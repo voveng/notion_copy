@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Pages
+
+#pages
+  - @pages.each do |page|
+    == render page
+    p
+      = link_to "Show this page", page
+
+= link_to "New page", new_page_path

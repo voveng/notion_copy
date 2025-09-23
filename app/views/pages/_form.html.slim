@@ -1,0 +1,30 @@
+= form_with(model: page) do |form|
+  - if page.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(page.errors.count, "error")} prohibited this page from being saved:"
+      ul
+        - page.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :workspace_id, style: "display: block"
+    = form.text_field :workspace_id
+
+  div
+    = form.label :user_id, style: "display: block"
+    = form.text_field :user_id
+
+  div
+    = form.label :title, style: "display: block"
+    = form.text_field :title
+
+  div
+    = form.label :frontpage, style: "display: block"
+    = form.checkbox :frontpage
+
+  div
+    = form.label :ancestry, style: "display: block"
+    = form.text_field :ancestry
+
+  div
+    = form.submit

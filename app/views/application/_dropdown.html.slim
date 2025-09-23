@@ -1,0 +1,9 @@
+.dropd.relative.z-auto data-controller="dropdown"
+  button class="#{local_assigns[:btn_classes].presence || 'py-2 px-1 mx-px hover:bg-gray-100'}" data-action='dropdown#toggle click@window->dropdown#hide'
+    - if local_assigns[:btn_html].present?
+      = local_assigns[:btn_html]
+    - else
+      = t_icon (local_assigns[:button_icon].presence || 'dots-vertical'),
+        css_classes: local_assigns[:icon_classes].presence || 'text-gray-400', size: 18
+  .hidden.absolute.border.rounded.bg-white.rounded-b.whitespace-nowrap data-dropdown-target='menu' class="#{local_assigns[:surface_css]}" style="z-index: 999999"
+    = yield

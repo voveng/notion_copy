@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workspace: one
+  user: one
+  title: MyString
+  frontpage: false
+  ancestry: MyString
+
+two:
+  workspace: two
+  user: two
+  title: MyString
+  frontpage: false
+  ancestry: MyString
