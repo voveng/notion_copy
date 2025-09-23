@@ -1,0 +1,7 @@
+.mx-auto.py-20.flex.flex-col.space-y-10 class="w-[550px]"
+  h1 Home
+  = button_to "Log out", logout_path, method: :delete, class: 'clean link'
+  .filds_with_errors
+    input type="text"
+    input type="email"
+    input type="password"

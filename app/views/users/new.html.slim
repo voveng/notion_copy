@@ -1,0 +1,17 @@
+= form_with model: @user, url: sign_up_path, class: 'flex flex-col space-y-4 border rounded-lg px-10 py-8 bg-white' do |f|
+  - if flash[:error].present?
+    .p-4.border.rounded-lg.bg-red-500.text-white
+      = flash[:error]
+
+  = f.label :email
+  = f.email_field :email, value: params.dig(:user, :email), class: 'px-4 py-2 border rounded-lg w-full'
+
+  = f.label :password
+  = f.password_field :password, value: params.dig(:user, :password), class: 'px-4 py-2 border rounded-lg w-full'
+
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation, value: params.dig(:user, :password_confirmation), class: 'px-4 py-2 border rounded-lg w-full'
+
+  = f.submit 'Log in', class: 'px-4 py-2 border rounded-lg bg-blue-500 text-white'
+  = link_to 'Sign up', sign_up_path, class: 'px-4 py-2 border rounded-lg bg-blue-500 text-white text-center'
+
