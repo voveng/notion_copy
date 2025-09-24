@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  layout "pages"
-  before_action :set_page, only: %i[ show edit update destroy ]
+  layout 'pages'
+  before_action :set_page, only: %i[show edit update destroy]
 
   # GET /pages or /pages.json
   def index
@@ -8,8 +8,7 @@ class PagesController < ApplicationController
   end
 
   # GET /pages/1 or /pages/1.json
-  def show
-  end
+  def show; end
 
   # GET /pages/new
   def new
@@ -17,8 +16,7 @@ class PagesController < ApplicationController
   end
 
   # GET /pages/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /pages or /pages.json
   def create
@@ -26,7 +24,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: "Page was successfully created." }
+        format.html { redirect_to @page, notice: 'Page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +37,7 @@ class PagesController < ApplicationController
   def update
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to @page, notice: "Page was successfully updated.", status: :see_other }
+        format.html { redirect_to @page, notice: 'Page was successfully updated.', status: :see_other }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,19 +51,20 @@ class PagesController < ApplicationController
     @page.destroy!
 
     respond_to do |format|
-      format.html { redirect_to pages_path, notice: "Page was successfully destroyed.", status: :see_other }
+      format.html { redirect_to pages_path, notice: 'Page was successfully destroyed.', status: :see_other }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_page
-      @page = Page.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def page_params
-      params.expect(page: [ :workspace_id, :user_id, :title, :frontpage, :ancestry ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_page
+    @page = Page.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def page_params
+    params.expect(page: %i[workspace_id user_id title frontpage ancestry])
+  end
 end

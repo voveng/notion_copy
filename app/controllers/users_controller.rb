@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new create]
-  layout "sessions"
+  layout 'sessions'
   def new
     @user = User.new
   end

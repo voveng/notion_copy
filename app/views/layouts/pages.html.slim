@@ -6,7 +6,7 @@
           .flex.flex-col
             - Current.user.workspaces.each do |workspace|
               = link_to truncate(workspace.title, length: 20), switch_to_workspace_path(workspace), class: 'clean px-3 py-2 hover:bg-gray-200', data: { turbo_frame: '_top'}
-            = button_to "New workspace", new_workspace_path(workspace: { title: "Workspace: #{Current.user.workspaces.count + 1 }"}), class: 'clean px-3 py-2 hover:bg-gray-200'
+            = button_to "New workspace", workspaces_path(workspace: { title: "Workspace: #{Current.user.workspaces.count + 1 }"}), class: 'clean px-3 py-2 hover:bg-gray-200'
 
         = link_to truncate(Current.workspace.title, length: 20), edit_workspace_path(Current.workspace), class: 'clean font-semibold px-3 py-2'
         .flex-1

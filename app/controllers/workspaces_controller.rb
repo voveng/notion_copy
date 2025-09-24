@@ -12,8 +12,7 @@ class WorkspacesController < ApplicationController
   end
 
   # GET /workspaces/1 or /workspaces/1.json
-  def show
-  end
+  def show; end
 
   # GET /workspaces/new
   def new
@@ -21,8 +20,7 @@ class WorkspacesController < ApplicationController
   end
 
   # GET /workspaces/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /workspaces or /workspaces.json
   def create
