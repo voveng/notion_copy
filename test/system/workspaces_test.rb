@@ -1,41 +1,43 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class WorkspacesTest < ApplicationSystemTestCase
   setup do
     @workspace = workspaces(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit workspaces_url
-    assert_selector "h1", text: "Workspaces"
+    assert_selector 'h1', text: 'Workspaces'
   end
 
-  test "should create workspace" do
+  test 'should create workspace' do
     visit workspaces_url
-    click_on "New workspace"
+    click_on 'New workspace'
 
-    fill_in "User", with: @workspace.user_id
-    click_on "Create Workspace"
+    fill_in 'User', with: @workspace.user_id
+    click_on 'Create Workspace'
 
-    assert_text "Workspace was successfully created"
-    click_on "Back"
+    assert_text 'Workspace was successfully created'
+    click_on 'Back'
   end
 
-  test "should update Workspace" do
+  test 'should update Workspace' do
     visit workspace_url(@workspace)
-    click_on "Edit this workspace", match: :first
+    click_on 'Edit this workspace', match: :first
 
-    fill_in "User", with: @workspace.user_id
-    click_on "Update Workspace"
+    fill_in 'User', with: @workspace.user_id
+    click_on 'Update Workspace'
 
-    assert_text "Workspace was successfully updated"
-    click_on "Back"
+    assert_text 'Workspace was successfully updated'
+    click_on 'Back'
   end
 
-  test "should destroy Workspace" do
+  test 'should destroy Workspace' do
     visit workspace_url(@workspace)
-    click_on "Destroy this workspace", match: :first
+    click_on 'Destroy this workspace', match: :first
 
-    assert_text "Workspace was successfully destroyed"
+    assert_text 'Workspace was successfully destroyed'
   end
 end

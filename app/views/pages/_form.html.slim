@@ -1,30 +1,4 @@
-= form_with(model: page) do |form|
-  - if page.errors.any?
-    div style="color: red"
-      h2 = "#{pluralize(page.errors.count, "error")} prohibited this page from being saved:"
-      ul
-        - page.errors.each do |error|
-          li = error.full_message
-
+= form_with(model: page, data: { turbo_frame: '_top' }) do |form|
   div
-    = form.label :workspace_id, style: "display: block"
-    = form.text_field :workspace_id
+    = form.text_field :title, palceholder: "Page title", class: 'h2 text-center -my-2', autofocus: true, onfocus: "this.select()"
 
-  div
-    = form.label :user_id, style: "display: block"
-    = form.text_field :user_id
-
-  div
-    = form.label :title, style: "display: block"
-    = form.text_field :title
-
-  div
-    = form.label :frontpage, style: "display: block"
-    = form.checkbox :frontpage
-
-  div
-    = form.label :ancestry, style: "display: block"
-    = form.text_field :ancestry
-
-  div
-    = form.submit

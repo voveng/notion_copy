@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Workspaceble
   extend ActiveSupport::Concern
 
@@ -27,7 +29,7 @@ module Workspaceble
     Current.workspace ||= workspace_from_session
   end
 
-  def set_current_workspace(workspace)
+  def current_workspace=(workspace)
     Current.workspace = workspace
     session[:cw_id] = Current.workspace.id
   end

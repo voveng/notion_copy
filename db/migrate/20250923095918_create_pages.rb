@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePages < ActiveRecord::Migration[8.0]
   def change
     create_table :pages do |t|
@@ -5,7 +7,7 @@ class CreatePages < ActiveRecord::Migration[8.0]
       t.belongs_to :user, null: false, foreign_key: true
       t.string :title
       t.boolean :frontpage, default: false
-      t.string :ancestry, default: "/"
+      t.string :ancestry, default: '/'
 
       t.timestamps
     end

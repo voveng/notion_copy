@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :pages
   resources :workspaces do
@@ -15,4 +17,5 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create', as: :createsession
   delete 'logout', to: 'sessions#destroy', as: :logout
   root 'pages#index'
+  get 'home', to: 'home#index'
 end

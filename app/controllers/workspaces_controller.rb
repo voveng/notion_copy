@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WorkspacesController < ApplicationController
   before_action :set_workspace, only: %i[show edit update destroy switch_to]
 
@@ -7,7 +9,7 @@ class WorkspacesController < ApplicationController
   end
 
   def switch_to
-    set_current_workspace(@workspace)
+    self.current_workspace = @workspace
     redirect_to root_path
   end
 
@@ -28,9 +30,7 @@ class WorkspacesController < ApplicationController
     @workspace.user = Current.user
     respond_to do |format|
       if @workspace.save
-        set_current_workspace(@workspace)
-        format.html { redirect_to root_url, notice: 'Workspace was successfully created.' }
-        format.json { render :show, status: :created, location: @workspace }
+        handle_successful_creation(format)
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @workspace.errors, status: :unprocessable_entity }
@@ -62,6 +62,12 @@ class WorkspacesController < ApplicationController
   end
 
   private
+
+  def handle_successful_creation(format)
+    self.current_workspace = @workspace
+    format.html { redirect_to root_url, notice: 'Workspace was successfully created.' }
+    format.json { render :show, status: :created, location: @workspace }
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_workspace

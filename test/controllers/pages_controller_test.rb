@@ -1,45 +1,51 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:one)
+    post createsession_url, params: { email: @user.email, password: 'password' }
+    @workspace = workspaces(:one)
+    get switch_to_workspace_url(@workspace)
     @page = pages(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get pages_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_page_url
     assert_response :success
   end
 
-  test "should create page" do
-    assert_difference("Page.count") do
-      post pages_url, params: { page: { ancestry: @page.ancestry, frontpage: @page.frontpage, title: @page.title, user_id: @page.user_id, workspace_id: @page.workspace_id } }
+  test 'should create page' do
+    assert_difference('Page.count') do
+      post pages_url
     end
 
-    assert_redirected_to page_url(Page.last)
+    assert_redirected_to root_path
   end
 
-  test "should show page" do
+  test 'should show page' do
     get page_url(@page)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_page_url(@page)
     assert_response :success
   end
 
-  test "should update page" do
-    patch page_url(@page), params: { page: { ancestry: @page.ancestry, frontpage: @page.frontpage, title: @page.title, user_id: @page.user_id, workspace_id: @page.workspace_id } }
+  test 'should update page' do
+    patch page_url(@page), params: { page: { title: 'Updated Page', frontpage: true } }
     assert_redirected_to page_url(@page)
   end
 
-  test "should destroy page" do
-    assert_difference("Page.count", -1) do
+  test 'should destroy page' do
+    assert_difference('Page.count', -1) do
       delete page_url(@page)
     end
 

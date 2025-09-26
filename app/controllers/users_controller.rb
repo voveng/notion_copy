@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new create]
   layout 'sessions'
@@ -11,7 +13,7 @@ class UsersController < ApplicationController
       login(@user)
       redirect_to root_path
     else
-      flash.now[:error] = "#{@user.errors.full_messages.to_sentence}"
+      flash.now[:error] = @user.errors.full_messages.to_sentence.to_s
       render :new, status: :unprocessable_entity
     end
   end

@@ -3,30 +3,48 @@
 @import "tailwindcss/utilities";
 
 @layer components {
+  .col {
+    @apply flex flex-col;
+  }
+  .row {
+    @apply flex items-center;
+  }
   h1 {
-    @apply text-5xl;
+    font-size: var(--text-5xl);
+    line-height: var(--tw-leading, var(--text-5xl--line-height));
   }
 
   h2 {
-    @apply text-4xl;
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
   }
 
-  h3 {
+  .h2 {
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+    font-weight: var(--font-weight-semibold, 600);
+  }
+
+  .h3 {
     @apply text-3xl;
   }
 
-  h4 {
+  .h4 {
     @apply text-2xl;
   }
 
-  h5 {
+  .h5 {
     @apply text-xl;
   }
+
   .link {
     @apply underline text-sky-500 hover:text-sky-200;
   }
   a:not(.clean) {
     @apply underline text-sky-500 hover:text-sky-200;
+  }
+  .page-link {
+    @apply text-gray-500 hover:text-gray-700 px-3 py-2 hover:bg-gray-200 rounded flex items-center space-x-2;
   }
 
   input[type="text"],

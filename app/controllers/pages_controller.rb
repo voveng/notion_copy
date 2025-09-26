@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   layout 'pages'
   before_action :set_page, only: %i[show edit update destroy]
@@ -20,15 +22,12 @@ class PagesController < ApplicationController
 
   # POST /pages or /pages.json
   def create
-    @page = Page.new(page_params)
-
+    @page = Page.new workspace: Current.workspace, user: Current.user
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
-        format.json { render :show, status: :created, location: @page }
+        format.html { redirect_to root_path, notice: 'Page was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -38,10 +37,8 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.update(page_params)
         format.html { redirect_to @page, notice: 'Page was successfully updated.', status: :see_other }
-        format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,7 +49,6 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to pages_path, notice: 'Page was successfully destroyed.', status: :see_other }
-      format.json { head :no_content }
     end
   end
 
@@ -65,6 +61,6 @@ class PagesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def page_params
-    params.expect(page: %i[workspace_id user_id title frontpage ancestry])
+    params.expect(page: %i[title frontpage])
   end
 end

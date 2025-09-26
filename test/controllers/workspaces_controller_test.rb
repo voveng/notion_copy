@@ -1,45 +1,49 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class WorkspacesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:one)
+    post createsession_url, params: { email: @user.email, password: 'password' }
     @workspace = workspaces(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get workspaces_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_workspace_url
     assert_response :success
   end
 
-  test "should create workspace" do
-    assert_difference("Workspace.count") do
-      post workspaces_url, params: { workspace: { user_id: @workspace.user_id } }
+  test 'should create workspace' do
+    assert_difference('Workspace.count') do
+      post workspaces_url, params: { workspace: { title: 'New Workspace' } }
     end
 
-    assert_redirected_to workspace_url(Workspace.last)
+    assert_redirected_to root_url
   end
 
-  test "should show workspace" do
+  test 'should show workspace' do
     get workspace_url(@workspace)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_workspace_url(@workspace)
     assert_response :success
   end
 
-  test "should update workspace" do
-    patch workspace_url(@workspace), params: { workspace: { user_id: @workspace.user_id } }
-    assert_redirected_to workspace_url(@workspace)
+  test 'should update workspace' do
+    patch workspace_url(@workspace), params: { workspace: { title: 'Updated Workspace' } }
+    assert_redirected_to root_path
   end
 
-  test "should destroy workspace" do
-    assert_difference("Workspace.count", -1) do
+  test 'should destroy workspace' do
+    assert_difference('Workspace.count', -1) do
       delete workspace_url(@workspace)
     end
 

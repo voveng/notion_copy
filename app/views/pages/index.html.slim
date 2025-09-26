@@ -1,11 +1,14 @@
 p style="color: green" = notice
 
-h1 Pages
+.text-center.p-10
+  h3 Good Evening, #{Current.user.email}
 
-#pages
-  - @pages.each do |page|
-    == render page
-    p
-      = link_to "Show this page", page
-
-= link_to "New page", new_page_path
+.mx-auto class="w-[850px]"
+  .grid.grid-cols-4.gap-4
+    - Current.workspace.pages.limit(8).each_slice(4) do |pages|
+      - pages.each do |page|
+        = link_to page, class: 'pages border rounded-2xl clean'
+          .head.bg-stone-100.h-12.rounded-t-2xl
+          .-mt-4.px-4
+            = t_icon 'file-description', css_classes: 'text-gray-400', size: 30
+          .p-5.title = page.d_title
