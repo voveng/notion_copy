@@ -7,6 +7,4 @@ p style="color: green" = notice
       - unless @page.frontpage
         = button_to [@page, page: { frontpage: true }], method: :patch, class: 'clean' do
           = t_icon :home
-      = button_to "Destroy this page", @page, method: :delete
-div
-        =< link_to "Back to pages", pages_path
+      = button_to "Destroy this page", @page, method: :delete, class: 'danger'

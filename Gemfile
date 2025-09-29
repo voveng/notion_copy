@@ -2,7 +2,6 @@
 
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 8.0.2', '>= 8.0.2.1'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem 'propshaft'
@@ -23,7 +22,6 @@ gem 'jbuilder'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem 'bcrypt', '~> 3.1.7'
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
@@ -56,7 +54,7 @@ group :development, :test do
 end
 
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'pry-byebug'
   gem 'web-console'
 end
 
@@ -71,3 +69,5 @@ gem 'slim-rails', '~> 3.7'
 gem 'amazing_print', '~> 1.8'
 
 gem 'tabler_icons_ruby', '~> 3.26'
+
+gem 'ancestry', '~> 4.3'

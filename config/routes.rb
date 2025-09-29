@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :pages
+  resources :pages do
+    post :sort, on: :collection
+  end
   resources :workspaces do
     get :switch_to, on: :member
   end

@@ -1,16 +1,10 @@
-div id="#{dom_id page}"
-  p
-    strong Workspace:
-    =< page.workspace_id
-  p
-    strong User:
-    =< page.user_id
-  p
-    strong Title:
-    =< page.title
-  p
-    strong Frontpage:
-    =< page.frontpage
-  p
-    strong Ancestry:
-    =< page.ancestry
+.page-container(data-sortable-id="#{page.id}")
+  div class="item group/link px-1" 
+    .row.space-x-2
+      = link_to page, class: 'clean row space-x-2 flex-1 page-link' do
+        = t_icon page.frontpage? ? 'home' : 'file-description', size: 20
+        span = truncate page.d_title, length: 14
+      = button_to pages_path(parent_id: page.id), class: 'clean btn p-1 invisible group-hover/link:visible' do
+        = t_icon 'plus', size: 20
+  .children.pl-4.nested-sortable
+    = render page.children.order(:position)

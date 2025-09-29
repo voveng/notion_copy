@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,35 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 20_250_923_095_918) do
-  create_table 'pages', force: :cascade do |t|
-    t.integer 'workspace_id', null: false
-    t.integer 'user_id', null: false
-    t.string 'title'
-    t.boolean 'frontpage', default: false
-    t.string 'ancestry', default: '/'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_pages_on_user_id'
-    t.index ['workspace_id'], name: 'index_pages_on_workspace_id'
+ActiveRecord::Schema[8.0].define(version: 2025_09_26_100456) do
+  create_table "pages", force: :cascade do |t|
+    t.integer "workspace_id", null: false
+    t.integer "user_id", null: false
+    t.string "title"
+    t.boolean "frontpage", default: false
+    t.string "ancestry", default: "/"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "position", default: 0
+    t.index ["user_id"], name: "index_pages_on_user_id"
+    t.index ["workspace_id"], name: "index_pages_on_workspace_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email'
-    t.string 'password_digest'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'workspaces', force: :cascade do |t|
-    t.integer 'user_id', null: false
-    t.string 'title'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_workspaces_on_user_id'
+  create_table "workspaces", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_workspaces_on_user_id"
   end
 
-  add_foreign_key 'pages', 'users'
-  add_foreign_key 'pages', 'workspaces'
-  add_foreign_key 'workspaces', 'users'
+  add_foreign_key "pages", "users"
+  add_foreign_key "pages", "workspaces"
+  add_foreign_key "workspaces", "users"
 end
