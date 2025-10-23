@@ -1,6 +1,6 @@
 .page-container(data-sortable-id="#{page.id}")
-  div class="item group/link px-1" 
-    .row.space-x-2
+  div class="item group/link px-1"
+    .row.space-x-2.text-sm
       = link_to page, class: 'clean row space-x-2 flex-1 page-link' do
         = t_icon page.frontpage? ? 'home' : 'file-description', size: 20
         span = truncate page.d_title, length: 14

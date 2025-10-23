@@ -8,3 +8,10 @@ p style="color: green" = notice
         = button_to [@page, page: { frontpage: true }], method: :patch, class: 'clean' do
           = t_icon :home
       = button_to "Destroy this page", @page, method: :delete, class: 'danger'
+
+.max-auto class="w-[80%]"
+  .page-sections.col.space-y-8 data-controller="sortable" data-sortable-url-value="#{sort_page_sections_path(@page)}"
+    = render partial: 'pages/sections/section', collection: @page.sections
+  </ol>
+
+  = button_to "Text", page_sections_path(@page, section: { kind: 'text' }), class: 'btn'

@@ -11,7 +11,7 @@
         = link_to truncate(Current.workspace.title, length: 20), edit_workspace_path(Current.workspace), class: 'clean font-semibold px-3 py-2'
         .flex-1
       .flex-1
-        = link_to root_url, class: 'clean page-link' do
+        = link_to root_url, class: 'clean page-link flex items-center space-x-2' do
           = t_icon 'home', size: 20
           span Home
         #pages.sortable(data-controller="nested-sortable" data-nested-sortable-target="root" data-nested-sortable-sort-url-value="#{sort_pages_path}")

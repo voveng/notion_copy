@@ -3,6 +3,9 @@
 Rails.application.routes.draw do
   resources :pages do
     post :sort, on: :collection
+    resources :sections, controller: 'pages/sections' do
+      post :sort, on: :collection
+    end
   end
   resources :workspaces do
     get :switch_to, on: :member

@@ -68,4 +68,38 @@
       @apply border-red-500 w-full;
     }
   }
+  .trix-content {
+    ul {@apply list-disc;}
+    ol {@apply list-decimal;}
+    ul, ol{
+      @apply pl-4;
+    }
+  }
+  
+  /* Sortable classes */
+  .sortable-ghost {
+    opacity: 0.4;
+  }
+  
+  .sortable-chosen {
+    cursor: grabbing;
+  }
+  
+  .sortable-drag {
+    cursor: grabbing;
+  }
+  
+  /* Ensure cursor pointer on sort handle */
+  .page-sections [data-controller="sortable"] .handle,
+  .page-sections [data-controller="sortable"] .handle *,
+  .turbo-frame .handle,
+  .turbo-frame .handle * {
+    cursor: pointer !important;
+    z-index: 100 !important;
+    pointer-events: auto !important;
+  }
+  
+  .page-sections [data-controller="sortable"] .handle:hover {
+    cursor: grab !important;
+  }
 }

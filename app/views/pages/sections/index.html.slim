@@ -1,0 +1,14 @@
+p style="color: green" = notice
+
+h1 Sections
+
+#sections
+  - @sections.each do |section|
+    == render section
+    p
+      = link_to "Show this section", [section.page, section]
+
+- if @sections.any?
+  = link_to "New section", new_page_section_path(@page)
+- else
+  = link_to "New section", new_page_section_path(@page)

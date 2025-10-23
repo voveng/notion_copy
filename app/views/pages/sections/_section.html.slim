@@ -1,0 +1,13 @@
+= turbo_frame_tag "section-#{section.id}", class: 'group/section flex hover:outline hover:outline-1 hover:outline-1 outline-sky-200 outline-offset-8 rounded', data: { id: section.id } do
+  .left style="z-index: 100; position: relative;"
+    = t_icon 'arrows-sort', css_classes: "handle cursor-pointer"
+  .content.flex-1
+    - if section.title.present?
+      h3.mb-3 = section.title
+    =< section.body
+  .right.invisible.col class='group-hover/section:visible'
+    = link_to edit_page_section_path(section.page, section), class: 'clean' do
+      = t_icon 'edit', size: 20
+
+    = button_to page_section_path(section.page, section), method: :delete, class: 'danger', data: { turbo_frame: '_top' } do
+      = t_icon 'trash', size: 20

@@ -56,16 +56,17 @@ class PagesController < ApplicationController
   end
 
   def sort
-    update_nodes(params[:pages])
+    update_nodes(params[:pages] || [])
     head :ok
   end
 
   def update_nodes(nodes, parent_id: nil)
     nodes.each_with_index do |node, index|
-      if page = Page.find_by(id: node['id'])
-        page.update(parent_id: parent_id == 'root' ? nil : parent_id, position: index + 1)
+      page = Current.workspace.pages.find_by(id: node['id'])
+      if page
+        page.update_columns(parent_id: parent_id == 'root' ? nil : parent_id, position: index + 1) # Using update_columns to avoid callbacks
       end
-      update_nodes(node['children'], parent_id: node['id'])
+      update_nodes(node['children'] || [], parent_id: node['id'])
     end
   end
 
@@ -77,11 +78,11 @@ class PagesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_page
-    @page = Page.find(params.expect(:id))
+    @page = Page.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def page_params
-    params.expect(page: %i[title frontpage])
+    params.require(:page).permit(:title, :frontpage)
   end
 end

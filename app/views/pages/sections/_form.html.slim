@@ -1,0 +1,6 @@
+= form_with(model: [section.page, section], url: section.persisted? ? page_section_path(section.page, section) : page_sections_path(section.page), class: 'flex col gap-4 space-y-4 w-full') do |form|
+  = form.text_field :title, class: 'h3 w-full', placeholder: 'Title', autofocus: true, onfocus: 'this.select()'
+  = form.rich_textarea :body
+
+  .row.flex-1
+    = form.submit

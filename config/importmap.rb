@@ -11,3 +11,5 @@ pin '@stimulus-components/dropdown', to: '@stimulus-components--dropdown.js' # @
 pin "stimulus-use" # @0.52.3
 pin "sortablejs" # @1.15.6
 pin "@rails/request.js", to: "https://cdn.jsdelivr.net/npm/@rails/request.js/dist/requestjs.js"
+pin "trix"
+pin "@rails/actiontext", to: "actiontext.esm.js"
