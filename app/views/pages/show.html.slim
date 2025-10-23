@@ -12,6 +12,5 @@ p style="color: green" = notice
 .max-auto class="w-[80%]"
   .page-sections.col.space-y-8 data-controller="sortable" data-sortable-url-value="#{sort_page_sections_path(@page)}"
     = render partial: 'pages/sections/section', collection: @page.sections
-  </ol>
 
   = button_to "Text", page_sections_path(@page, section: { kind: 'text' }), class: 'btn'
